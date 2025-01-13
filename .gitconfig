@@ -1,0 +1,124 @@
+
+[core]
+	autocrlf = true
+	ignorecase = false
+	preloadIndex = true
+	fileMode = false
+	sshCommand = C:/Windows/System32/OpenSSH/ssh.exe
+[user]
+	email = gubaupol@gmail.com
+	name = Pol Gubau Amores
+	name = Pol Gubau Amores
+[fetch]
+    prune = true
+[commit]
+    template = ~/.gitmessage.txt
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[credential]
+	helper = store
+[alias]
+    # Commit
+    cm = "!f() { git commit -m \"$@\"; }; f"
+    amend = commit --amend --no-edit
+    cam = commit -am
+    ca = commit --amend
+    
+    # Checkout
+    co = checkout
+    cob = checkout -b
+
+    # Branch
+    br = branch
+    bra = branch -a
+    brr = branch --remote
+    bd = branch -d
+    bdd = branch -D
+
+    # Status
+    st = status -sb  # Incluye el estado resumido y ramas activas
+
+    # Pull
+    pom = pull origin master
+    pum = push origin master
+    pob = pull origin HEAD
+    poma = pull origin main
+    puf = pull --ff-only  # Solo actualiza si puede avanzar rápido
+    pr = pull --rebase  # Rebase en lugar de merge al hacer pull
+
+    # Push
+    pub = push origin HEAD
+    puf = push --force-with-lease  # Fuerza el push pero seguro
+
+    # Logs
+    lg = log --oneline --graph --decorate --all
+		ll2 = log --pretty=format:'%C(yellow)%h%Creset %C(bold blue)%an%Creset - %s %Cgreen(%cr)%Creset %C(red)<%ae>%Creset'
+
+    ll = log --pretty=format:'%C(yellow)%h%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+    llo = log --oneline
+    ls = log --stat
+    lsg = log --stat --graph
+
+    # Diffs
+    df = diff
+    dft = diff-tree --no-commit-id --name-only -r
+    dfa = diff --cached
+
+    # Rebases
+    rb = rebase
+    rbc = rebase --continue
+    rbi = rebase -i
+
+    # Remote
+    rma = remote -v
+    rmu = remote update
+
+    # General
+    cl = clone
+    rv = rev-parse --abbrev-ref HEAD  # Ver la rama actual
+    last = log -1 HEAD  # Último commit
+    rst = reset --soft HEAD~1
+    hrd = reset --hard
+    clean = clean -fd
+    undo = reset --soft HEAD~1  # Deshace el último commit sin perder cambios
+    unstage = reset HEAD --  # Elimina archivos del área de staging
+
+    # Tags
+    tagl = tag -l
+    tagd = tag -d
+    ptt = push --tags  # Subir todas las etiquetas
+
+    # Stash
+    stashl = stash list
+    stashp = stash pop
+    stashs = stash save
+    stashu = stash apply
+
+    # Submódulos
+    subu = submodule update --init --recursive
+    subs = submodule status
+    suba = submodule add
+
+    # Otros
+    whoami = config user.name
+    cfg = config --list
+    aliases = "!git config -l | grep alias | cut -c 7-"
+		branches = branch -a
+
+
+[diff]
+	tool = vscode
+	mnemonicprefix = true
+[merge]
+	tool = vscode
+	conflictstyle = diff3
+
+[push]
+	default = simple
+
+[rebase]
+	autosquash = true
+	autostash = true
